@@ -1,45 +1,37 @@
 import React, { Component } from 'react'
+import './stylesNew.css'
+import { Button } from '@mui/material';
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
+import Fcomponent from './Fcomponent'
 
 export default class Ccomponents extends Component {
 
 constructor(props) {
-  super(props)
-
+  super(props);
   this.state = {
-  input: '',
- items: []
+ name: "Button not pressed"
   };
 
-  this.handleChange = this.handleChange.bind(this)
-  this.handleSubmit = this.handleSubmit.bind(this)
+  this.updateData = this.updateData.bind(this)
 }
 
-handleChange(event) {
-    this.setState({
-        input: event.target.value
-    })
+updateData = (value) => {
+  this.setState({
+    name:value
+  })
 }
-
-handleSubmit(event) {
-    event.preventDefault()
-    this.setState({
-        items: [...this.state.items, this.state.input],
-        input: ''
-    })
-}
+  
+ 
 
   render() {
     
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
-     <input value={this.state.input} onChange={this.handleChange}/>
-     <button type="submit">Submit</button>
-        </form>
-        <ul>{this.state.items.map((item, index) => (
-            <li key={index}>{item}</li>
-        ))}
-            </ul>
+   <p>State: {this.state.name}</p>
+   <Fcomponent updateData={this.updateData}/>
       </div>
     )
   }
